@@ -1,4 +1,3 @@
-import exp from "constants";
 import mongoose, { Schema, Model, Document } from "mongoose";
 
 export interface INote extends Document {
