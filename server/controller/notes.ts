@@ -25,3 +25,16 @@ export const createNote: any = async (req: Request, res: Response) => {
     return res.status(500).json({ message: "Internal server error" });
   }
 };
+
+export const getNotes: any = async (req: Request, res: Response) => {
+  try {
+    const userId = req.user._id;
+
+    const notes = await Note.find({ userId });
+
+    return res.status(200).json({ notes });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+};

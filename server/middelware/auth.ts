@@ -14,7 +14,7 @@ declare global {
   }
 }
 
-export const auth = (req: Request, res: Response, next: NextFunction) => {
+export const auth: any = (req: Request, res: Response, next: NextFunction) => {
   try {
     const token = req.cookies?.token || req.body?.token;
 
