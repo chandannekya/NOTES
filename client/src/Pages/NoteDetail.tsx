@@ -13,6 +13,7 @@ const NoteDetail: React.FC = () => {
   const navigate = useNavigate();
   const [note, setNote] = useState<NoteDetails | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const apiUrl = import.meta.env.VITE_REACT_APP_URL;
 
   const fetchNoteDetails = async () => {
     try {
@@ -23,14 +24,11 @@ const NoteDetail: React.FC = () => {
         return;
       }
 
-      const response = await axios.get(
-        `${process.env.REACT_APP_URL || `http://localhost:3000`}/api/notes/note?id=${id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`, // Attach the token
-          },
-        }
-      );
+      const response = await axios.get(`${apiUrl}/api/notes/note?id=${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`, // Attach the token
+        },
+      });
 
       console.log(response.data.note);
       if (response.statusText === "OK") {

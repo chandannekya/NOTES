@@ -21,6 +21,7 @@ const SignUp = () => {
   const [step, setStep] = useState(1); // Track step: 1 for Sign-Up, 2 for OTP Verification
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const apiUrl = import.meta.env.VITE_REACT_APP_URL;
 
   // Handle changes for sign-up form inputs
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -45,12 +46,9 @@ const SignUp = () => {
   const sendOtp = async (email: string) => {
     setLoading(true);
     try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_URL || `http://localhost:3000`}/api/Auth/otpSend`,
-        {
-          email,
-        }
-      );
+      const response = await axios.post(`${apiUrl}/api/Auth/otpSend`, {
+        email,
+      });
 
       if (response.data.success) {
         toast.success("OTP sent successfully");
@@ -77,15 +75,12 @@ const SignUp = () => {
     setLoading(true);
     try {
       const { email, dob, username } = formData;
-      const response = await axios.post(
-        `${process.env.REACT_APP_URL || `http://localhost:3000`}/api/Auth/signUp`,
-        {
-          email,
-          DOB: dob,
-          username,
-          otp,
-        }
-      );
+      const response = await axios.post(`${apiUrl}/api/Auth/signUp`, {
+        email,
+        DOB: dob,
+        username,
+        otp,
+      });
 
       if (response.data.success) {
         toast.success("OTP verified successfully");

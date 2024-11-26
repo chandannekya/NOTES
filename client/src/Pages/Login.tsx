@@ -9,6 +9,7 @@ const Login = () => {
     otp: "",
   });
 
+  const apiUrl = import.meta.env.VITE_REACT_APP_URL;
   const [loading, setLoading] = useState(false);
   const [isOtpSent, setIsOtpSent] = useState(false);
   const navigate = useNavigate();
@@ -33,12 +34,9 @@ const Login = () => {
 
     setIsOtpSent(true);
     try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_URL || `http://localhost:3000`}/api/Auth/otpSend`,
-        {
-          email: formData.email,
-        }
-      );
+      const response = await axios.post(`${apiUrl}/api/Auth/otpSend`, {
+        email: formData.email,
+      });
 
       if (response.data.success) {
         toast.success("OTP sent successfully to your email");
@@ -74,13 +72,10 @@ const Login = () => {
 
     setLoading(true);
     try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_URL || `http://localhost:3000`}/api/Auth/signIn`,
-        {
-          email: formData.email,
-          otp: formData.otp,
-        }
-      );
+      const response = await axios.post(`${apiUrl}/api/Auth/signIn`, {
+        email: formData.email,
+        otp: formData.otp,
+      });
 
       if (response.data.success) {
         toast.success("Sign-in successful");

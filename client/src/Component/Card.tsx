@@ -11,7 +11,7 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({ heading, id, onDelete }) => {
   const navigate = useNavigate();
-
+  const apiUrl = import.meta.env.VITE_REACT_APP_URL;
   const handleCardClick = () => {
     navigate(`/notes/${id}`); // Navigate to the detailed page
   };
@@ -21,17 +21,12 @@ const Card: React.FC<CardProps> = ({ heading, id, onDelete }) => {
       const token = localStorage.getItem("token");
       console.log("Deleting note with id:", id);
 
-      const response = await axios.delete(
-        `${
-          process.env.REACT_APP_URL || `http://localhost:3000`
-        }/api/notes/deleteNote`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`, // Attach the token
-          },
-          data: { _id: id.trim() }, // Pass note ID in request body
-        }
-      );
+      const response = await axios.delete(`${apiUrl}/api/notes/deleteNote`, {
+        headers: {
+          Authorization: `Bearer ${token}`, // Attach the token
+        },
+        data: { _id: id.trim() }, // Pass note ID in request body
+      });
 
       if (response.statusText === "OK") {
         toast.success("Note Deleted");

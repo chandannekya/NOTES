@@ -7,7 +7,7 @@ const CreateNote: React.FC = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const navigate = useNavigate();
-
+  const apiUrl = import.meta.env.VITE_REACT_APP_URL;
   const handleCreateNote = async () => {
     const token = localStorage.getItem("token");
 
@@ -24,7 +24,7 @@ const CreateNote: React.FC = () => {
 
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_URL || `http://localhost:3000`}/api/notes/createNote`,
+        `${apiUrl}/api/notes/createNote`,
         { title, content },
         {
           headers: {

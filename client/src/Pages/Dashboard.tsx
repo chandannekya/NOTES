@@ -21,18 +21,16 @@ interface UserData {
 const Dashboard: React.FC = () => {
   const [isLogin, setIsLogin] = useState<boolean>(false);
   const [user, setUser] = useState<User[]>([]); // Simplified state type
-  const [userData, setUserData] = useState<UserData | null>(null); // Ensure userData is null initially
+  const [userData, setUserData] = useState<UserData | null>(null);
+  const apiUrl = import.meta.env.VITE_REACT_APP_URL; // Ensure userData is null initially
 
   const navigate = useNavigate();
 
   const fetchNotes = async (token: string) => {
     try {
-      const response = await axios.get(
-        `${process.env.REACT_APP_URL || `http://localhost:3000`}/api/notes/getNotes`,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
+      const response = await axios.get(`${apiUrl}/api/notes/getNotes`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
 
       if (response.data.success) {
         setUser(response.data.data || []);
