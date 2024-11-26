@@ -24,7 +24,6 @@ const Dashboard: React.FC = () => {
   const [userData, setUserData] = useState<UserData | null>(null); // Ensure userData is null initially
 
   const navigate = useNavigate();
-  const location = useLocation();
 
   const fetchNotes = async (token: string) => {
     try {

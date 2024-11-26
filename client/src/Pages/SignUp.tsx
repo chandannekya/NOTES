@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import axios from "axios";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 interface FormData {
   username: string;
@@ -15,8 +15,8 @@ const SignUp = () => {
     email: "",
     dob: "",
   });
-  const location = useLocation();
-  const user = location.state?.user;
+  // const location = useLocation();
+  // const user = location.state?.user;
   const [otp, setOtp] = useState(""); // Store OTP input
   const [step, setStep] = useState(1); // Track step: 1 for Sign-Up, 2 for OTP Verification
   const [loading, setLoading] = useState(false);
