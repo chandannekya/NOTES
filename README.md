@@ -1,4 +1,3 @@
-Here's the fully corrected README file:
 
 ---
 
