@@ -169,5 +169,3 @@ The following environment variables are required for proper functioning:
 This project is licensed under the MIT License.
 
 ---
-
-Let me know if there are any other changes you'd like! 😊
