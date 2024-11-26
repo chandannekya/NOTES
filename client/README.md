@@ -129,8 +129,8 @@ Make sure you have the following installed:
 ```
 notes/
 │
-├── client/              # React frontend
-│   ├── src/             # React components, hooks, etc.
+|             # React frontend
+└──── src/             # React components, hooks, etc.
 │   ├── public/          # Public assets (e.g., index.html)
 │   └── tailwind.config.js # Tailwind CSS configuration
 │
