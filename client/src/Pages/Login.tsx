@@ -40,6 +40,7 @@ const Login = () => {
 
       if (response.data.success) {
         toast.success("OTP sent successfully to your email");
+        setIsOtpSent(false);
       } else {
         toast.error("Failed to send OTP");
       }

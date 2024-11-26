@@ -50,6 +50,7 @@ const Dashboard: React.FC = () => {
 
     if (storedUserData && token) {
       setUserData(JSON.parse(storedUserData));
+      setIsLogin(true);
       fetchNotes(token);
     } else {
       setIsLogin(false);
