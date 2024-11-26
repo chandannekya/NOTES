@@ -3,6 +3,7 @@ import React from "react";
 import toast from "react-hot-toast";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
+
 interface CardProps {
   heading: string;
   id: string;
@@ -12,11 +13,13 @@ interface CardProps {
 const Card: React.FC<CardProps> = ({ heading, id, onDelete }) => {
   const navigate = useNavigate();
   const apiUrl = import.meta.env.VITE_REACT_APP_URL;
+
   const handleCardClick = () => {
     navigate(`/notes/${id}`); // Navigate to the detailed page
   };
 
-  const deleteNote = async () => {
+  const deleteNote = async (event: React.MouseEvent) => {
+    event.stopPropagation(); // Prevent the click event from propagating to the parent div
     try {
       const token = localStorage.getItem("token");
       console.log("Deleting note with id:", id);
@@ -28,7 +31,7 @@ const Card: React.FC<CardProps> = ({ heading, id, onDelete }) => {
         data: { _id: id.trim() }, // Pass note ID in request body
       });
 
-      if (response.statusText === "OK") {
+      if (response.data.success) {
         toast.success("Note Deleted");
         onDelete(id); // Notify the parent component
       } else {
@@ -42,7 +45,7 @@ const Card: React.FC<CardProps> = ({ heading, id, onDelete }) => {
 
   return (
     <div
-      className="border-2 flex justify-between p-4 w-[365px] m-5 rounded-md shadow-md"
+      className="border-2 flex justify-between p-4 w-[365px] cursor-pointer m-5 rounded-md shadow-md"
       onClick={handleCardClick}
     >
       <h1 className="text-xl font-semibold">{heading}</h1>

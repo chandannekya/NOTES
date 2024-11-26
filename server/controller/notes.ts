@@ -72,7 +72,9 @@ export const deleteNote: any = async (req: Request, res: Response) => {
       { new: true }
     );
 
-    res.status(200).json({ message: "Note deleted successfully" });
+    res
+      .status(200)
+      .json({ success: true, message: "Note deleted successfully" });
   } catch (err) {
     console.log(err);
     return res.status(500).json({ message: "Internal server error" });
