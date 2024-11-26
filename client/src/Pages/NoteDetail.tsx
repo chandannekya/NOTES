@@ -24,7 +24,7 @@ const NoteDetail: React.FC = () => {
       }
 
       const response = await axios.get(
-        `http://localhost:3000/api/notes/note?id=${id}`,
+        `${process.env.REACT_APP_URL || `http://localhost:3000`}/api/notes/note?id=${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`, // Attach the token

@@ -22,7 +22,9 @@ const Card: React.FC<CardProps> = ({ heading, id, onDelete }) => {
       console.log("Deleting note with id:", id);
 
       const response = await axios.delete(
-        "http://localhost:3000/api/notes/deleteNote",
+        `${
+          process.env.REACT_APP_URL || `http://localhost:3000`
+        }/api/notes/deleteNote`,
         {
           headers: {
             Authorization: `Bearer ${token}`, // Attach the token

@@ -24,7 +24,7 @@ const CreateNote: React.FC = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/notes/createNote",
+        `${process.env.REACT_APP_URL || `http://localhost:3000`}/api/notes/createNote`,
         { title, content },
         {
           headers: {

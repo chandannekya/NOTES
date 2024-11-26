@@ -34,7 +34,7 @@ const Login = () => {
     setIsOtpSent(true);
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/Auth/otpSend",
+        `${process.env.REACT_APP_URL || `http://localhost:3000`}/api/Auth/otpSend`,
         {
           email: formData.email,
         }
@@ -75,7 +75,7 @@ const Login = () => {
     setLoading(true);
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/Auth/signIn",
+        `${process.env.REACT_APP_URL || `http://localhost:3000`}/api/Auth/signIn`,
         {
           email: formData.email,
           otp: formData.otp,

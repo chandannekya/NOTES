@@ -19,7 +19,7 @@ interface UserData {
 }
 
 const Dashboard: React.FC = () => {
-  const [isLogin, setIsLogin] = useState<boolean>(true);
+  const [isLogin, setIsLogin] = useState<boolean>(false);
   const [user, setUser] = useState<User[]>([]); // Simplified state type
   const [userData, setUserData] = useState<UserData | null>(null); // Ensure userData is null initially
 
@@ -28,7 +28,7 @@ const Dashboard: React.FC = () => {
   const fetchNotes = async (token: string) => {
     try {
       const response = await axios.get(
-        "http://localhost:3000/api/notes/getNotes",
+        `${process.env.REACT_APP_URL || `http://localhost:3000`}/api/notes/getNotes`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
