@@ -14,13 +14,12 @@ export const SignUp: any = async (req: Request, res: Response) => {
     const { username, email, DOB, otp } = req.body;
 
     // Validate input fields
+
     if (!username || !email || !DOB || !otp) {
-      return res
-        .status(400)
-        .json({
-          success: false,
-          message: "All fields are required, including OTP",
-        });
+      return res.status(400).json({
+        success: false,
+        message: "All fields are required, including OTP",
+      });
     }
 
     // Check if the user already exists

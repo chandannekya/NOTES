@@ -11,6 +11,8 @@ export const otpSend: any = async (req: Request, res: Response) => {
       return res.status(400).json({ message: "Email is required" });
     }
 
+    
+
     const OTP = otpGenerator.generate(6, {
       upperCaseAlphabets: false,
       lowerCaseAlphabets: false,
@@ -33,9 +35,13 @@ export const otpSend: any = async (req: Request, res: Response) => {
 
     await mailer(email, "OTP for registration", "Your OTP is " + OTP);
 
-    return res.status(200).json({ message: "OTP sent successfully" });
+    return res
+      .status(200)
+      .json({ success: true, message: "OTP sent successfully" });
   } catch (error) {
     console.log(error);
-    return res.status(500).json({ message: "Internal server error" });
+    return res
+      .status(500)
+      .json({ success: false, message: "Internal server error" });
   }
 };

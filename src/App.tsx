@@ -1,9 +1,24 @@
 import React from "react";
+import { Route, Routes } from "react-router-dom";
+import Dashboard from "./Pages/Dashboard"; // Replace with actual paths
+import LogIn from "./Pages/Login"; // Replace with actual paths
+import SignUp from "./Pages/SignUp"; // Replace with actual paths
 
-const App = () => {
+import CreateNote from "./Pages/CreateNote";
+import NoteDetail from "./Pages/NoteDetail";
+
+const App: React.FC = () => {
   return (
-    <div className="bg-blue-400 text-xl font-bold">
-      this is my react + tysccript
+    <div>
+      <Routes>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/login" element={<LogIn />} />
+        <Route path="/signup" element={<SignUp />} />
+
+        <Route path="*" element={<Dashboard />} />
+        <Route path="/createNote" element={<CreateNote />} />
+        <Route path="/notes/:id" element={<NoteDetail />} />
+      </Routes>
     </div>
   );
 };
