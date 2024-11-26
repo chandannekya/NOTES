@@ -30,7 +30,7 @@ const NoteDetail: React.FC = () => {
         },
       });
 
-      console.log(response.data.note);
+      console.log(response);
       if (response.data.success) {
         setNote(response.data.note);
       } else {

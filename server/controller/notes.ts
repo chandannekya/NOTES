@@ -89,7 +89,7 @@ export const getOneNote: any = async (req: Request, res: Response) => {
     const note = await Note.findById(NoteId);
 
     return res.status(200).json({
-      success: false,
+      success: true,
       note,
     });
   } catch (err) {
