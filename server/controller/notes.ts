@@ -72,7 +72,7 @@ export const deleteNote: any = async (req: Request, res: Response) => {
       { new: true }
     );
 
-    res.status(200).json({  message: "Note deleted successfully" });
+    res.status(200).json({ message: "Note deleted successfully" });
   } catch (err) {
     console.log(err);
     return res.status(500).json({ message: "Internal server error" });
@@ -88,7 +88,10 @@ export const getOneNote: any = async (req: Request, res: Response) => {
 
     const note = await Note.findById(NoteId);
 
-    return res.status(200).json({ note });
+    return res.status(200).json({
+      success: false,
+      note,
+    });
   } catch (err) {
     console.log(err);
     return res.status(500).json({ message: "Internal server error" });

@@ -31,7 +31,7 @@ const NoteDetail: React.FC = () => {
       });
 
       console.log(response.data.note);
-      if (response.statusText === "OK") {
+      if (response.data.success) {
         setNote(response.data.note);
       } else {
         toast.error("Failed to fetch note details");
